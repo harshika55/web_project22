@@ -1,0 +1,1043 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Technology | Learning Portal</title>
+
+<style>
+:root {
+  --bg: #0b1424;
+  --surface: #121f33;
+  --surface2: #192a42;
+  --primary: #65aaff;
+  --accent: #3689ed;
+  --text: #edf4ff;
+  --muted: #a4b5cb;
+  --border: #263b58;
+  --hero: #102b4c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+}
+
+header {
+  background: #101c2e;
+  padding: 17px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 21px;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+nav {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+nav a:hover {
+  color: var(--primary);
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.primary-btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 13px 24px;
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.primary-btn:hover {
+  background: #1769c6;
+  transform: translateY(-2px);
+}
+
+.secondary-btn {
+  background: var(--surface2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 10px 18px;
+  border-radius: 7px;
+  font-weight: bold;
+}
+
+.hero {
+  background: linear-gradient(120deg,#09172b,#123b67,#18558a);
+  color: white;
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+  padding: 70px 10%;
+}
+
+.hero-content {
+  max-width: 750px;
+}
+
+.hero .tag {
+  color: #8fc5ff;
+  font-size: 14px;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
+}
+
+.hero h1 {
+  font-size: clamp(45px,7vw,76px);
+  line-height: 1.1;
+  margin-bottom: 22px;
+  letter-spacing: 2px;
+}
+
+.hero p {
+  font-size: 17px;
+  color: #d9e7f5;
+  max-width: 620px;
+  margin-bottom: 30px;
+}
+
+.hero-bottom {
+  margin-top: 45px;
+  color: #c5d8eb;
+  font-size: 13px;
+}
+
+.container {
+  max-width: 1150px;
+  margin: auto;
+  padding: 55px 5%;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+.page-heading {
+  margin-bottom: 30px;
+}
+
+.page-heading h1 {
+  font-size: 32px;
+  color: var(--primary);
+}
+
+.page-heading p {
+  color: var(--muted);
+  margin-top: 5px;
+}
+
+.breadcrumb {
+  margin-bottom: 20px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.breadcrumb button {
+  border: none;
+  background: none;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.unit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+  gap: 22px;
+}
+
+.unit-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 27px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.unit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px #00000035;
+  border-color: var(--primary);
+}
+
+.unit-number {
+  background: #1b3656;
+  color: var(--primary);
+  display: inline-block;
+  padding: 7px 13px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 17px;
+}
+
+.unit-card h2 {
+  color: var(--text);
+  font-size: 21px;
+  margin-bottom: 10px;
+}
+
+.unit-card p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.arrow {
+  color: var(--primary);
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.topic-list {
+  display: grid;
+  gap: 12px;
+}
+
+.topic-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  background: var(--surface);
+  padding: 17px 20px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.topic-item:hover {
+  border-color: var(--primary);
+  background: var(--surface2);
+}
+
+.topic-item span {
+  font-weight: 600;
+}
+
+.topic-item small {
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.notes {
+  background: var(--surface);
+  padding: 35px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  min-height: 400px;
+}
+
+.notes h2 {
+  color: var(--primary);
+  margin-bottom: 20px;
+  font-size: 27px;
+}
+
+.notes h3 {
+  color: #83baff;
+  margin: 27px 0 10px;
+  font-size: 20px;
+}
+
+.notes p {
+  color: #d1dbea;
+  margin-bottom: 14px;
+  text-align: justify;
+}
+
+.notes ul, .notes ol {
+  padding-left: 25px;
+  margin-bottom: 18px;
+  color: #d1dbea;
+}
+
+.notes li {
+  margin-bottom: 9px;
+}
+
+.notes strong, .notes b {
+  color: white;
+}
+
+.notes table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0;
+}
+
+.notes td, .notes th {
+  padding: 11px;
+  border: 1px solid var(--border);
+  text-align: left;
+  color: var(--text);
+}
+
+.notes th {
+  background: #1c3859;
+  color: #9bcaff;
+}
+
+.example-box {
+  background: #0c1a2b;
+  border-left: 4px solid var(--accent);
+  padding: 17px;
+  border-radius: 6px;
+  margin: 15px 0;
+  color: #d8e8fb;
+}
+
+.flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.flow span {
+  background: #1d3b5f;
+  border: 1px solid #3e78b5;
+  color: #e5f2ff;
+  padding: 12px 15px;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.flow b {
+  color: var(--primary);
+}
+
+.note-navigation {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.info-section {
+  background: var(--surface);
+  padding: 35px 7%;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.info-section h2 {
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.info-section p {
+  color: var(--muted);
+  max-width: 750px;
+}
+
+footer {
+  background: #07101d;
+  color: white;
+  padding: 30px 7%;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+footer p {
+  color: #a4b5cb;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+@media(max-width:650px) {
+  header {
+    padding: 14px 5%;
+  }
+
+  nav {
+    gap: 10px;
+  }
+
+  nav a {
+    font-size: 12px;
+  }
+
+  .hero {
+    min-height: 440px;
+    padding: 55px 7%;
+  }
+
+  .container {
+    padding: 35px 5%;
+  }
+
+  .notes {
+    padding: 20px;
+  }
+
+  .topic-item {
+    align-items: flex-start;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">WT | Learning Portal</div>
+  <nav>
+    <a onclick="goHome()">Home</a>
+    <a onclick="goChapters()">Chapters</a>
+  </nav>
+</header>
+
+<!-- HOME PAGE -->
+
+<section id="homePage" class="page active">
+
+  <div class="hero">
+    <div class="hero-content">
+      <div class="tag">B.TECH • COMPUTER SCIENCE & ENGINEERING</div>
+
+      <h1>WEB<br>TECHNOLOGY</h1>
+
+      <p>
+        A complete learning portal for understanding Web Technology.
+        Explore five units, study detailed concepts and prepare for
+        examinations with structured academic notes.
+      </p>
+
+      <button class="primary-btn" onclick="goChapters()">
+        Explore Chapters →
+      </button>
+
+      <div class="hero-bottom">
+        CS35302 | Academic Session 2026–27
+      </div>
+    </div>
+  </div>
+
+  <div class="info-section">
+    <h2>About This Course</h2>
+    <p>
+      This learning portal provides organized study material for
+      Web Technology. Topics are arranged unit-wise with explanations,
+      examples and important examination questions.
+    </p>
+  </div>
+
+  <div class="container">
+    <div class="page-heading">
+      <h1>Course Overview</h1>
+      <p>Explore the five units included in this subject.</p>
+    </div>
+
+    <div class="unit-grid" id="homeUnitGrid"></div>
+  </div>
+
+</section>
+
+<!-- CHAPTER INDEX -->
+
+<section id="chaptersPage" class="page">
+  <div class="container">
+
+    <div class="breadcrumb">
+      <button onclick="goHome()">Home</button> / Chapters
+    </div>
+
+    <div class="page-heading">
+      <h1>Course Index</h1>
+      <p>Select a unit to explore its topics and study material.</p>
+    </div>
+
+    <div class="unit-grid" id="unitGrid"></div>
+
+  </div>
+</section>
+
+<!-- UNIT TOPICS -->
+
+<section id="topicsPage" class="page">
+  <div class="container">
+
+    <div class="breadcrumb">
+      <button onclick="goHome()">Home</button> /
+      <button onclick="goChapters()">Chapters</button> /
+      <span id="unitBreadcrumb"></span>
+    </div>
+
+    <div class="page-heading">
+      <h1 id="unitHeading"></h1>
+      <p>Select any topic to read its detailed notes.</p>
+    </div>
+
+    <div class="topic-list" id="topicList"></div>
+
+  </div>
+</section>
+
+<!-- TOPIC NOTES -->
+
+<section id="notesPage" class="page">
+  <div class="container">
+
+    <div class="breadcrumb">
+      <button onclick="goHome()">Home</button> /
+      <button onclick="goChapters()">Chapters</button> /
+      <button onclick="backToUnit()">Unit</button> /
+      <span id="topicBreadcrumb"></span>
+    </div>
+
+    <div class="note-navigation">
+      <button class="secondary-btn" onclick="backToUnit()">
+        ← Back to Topics
+      </button>
+
+      <button class="secondary-btn" onclick="goChapters()">
+        Course Index
+      </button>
+    </div>
+
+    <div class="notes" id="notesContent"></div>
+
+  </div>
+</section>
+
+<footer>
+  <h3>WEB TECHNOLOGY</h3>
+  <p>CS35302 | B.Tech Computer Science and Engineering</p>
+  <p>Academic Session 2026–27</p>
+  <p>Learning • Understanding • Growing</p>
+</footer>
+
+<script>
+
+// ---------------- COURSE DATA ----------------
+
+const units = [
+{
+ name: "Internet and Web Basics",
+ topics: [
+  "Introduction to the Internet",
+  "World Wide Web (WWW)",
+  "Internet Protocols",
+  "HTTP and HTTPS",
+  "SMTP, POP3 and IMAP",
+  "MIME",
+  "Domain Name System (DNS)",
+  "Web Browsers",
+  "Web Servers"
+ ]
+},
+{
+ name: "HTML, JavaScript, CSS and XML",
+ topics: [
+  "Introduction to HTML",
+  "HTML Lists and Tables",
+  "HTML Images and Forms",
+  "HTML Frames",
+  "Introduction to JavaScript",
+  "Dynamic HTML (DHTML)",
+  "Cascading Style Sheets (CSS)",
+  "XML and DTD",
+  "XML Schema",
+  "DOM and SAX"
+ ]
+},
+{
+ name: "Web Services and AJAX",
+ topics: [
+  "Introduction to Web Services",
+  "Web Services Architecture",
+  "SOAP",
+  "WSDL",
+  "UDDI",
+  "Web Services Deployment",
+  "Introduction to AJAX",
+  "CORBA",
+  "AJAX Applications"
+ ]
+},
+{
+ name: "Web 2.0 and Semantic Web",
+ topics: [
+  "Introduction to Web 2.0",
+  "Features of Web 2.0",
+  "Web 2.0 Applications",
+  "Social Networking",
+  "Introduction to Semantic Web",
+  "Semantic Web Architecture",
+  "RDF and Ontology",
+  "Web 2.0 vs Web 1.0",
+  "Applications of Semantic Web"
+ ]
+},
+{
+ name: "Web 4.0 and Decentralized Web",
+ topics: [
+  "Introduction to Web 4.0",
+  "Features of Web 4.0",
+  "Decentralized Web",
+  "Blockchain and Web Technology",
+  "Future of Web Technology"
+ ]
+}
+];
+
+// ---------------- DETAILED NOTES ----------------
+
+const notes = {
+
+"Introduction to the Internet": `
+<h2>Introduction to the Internet</h2>
+
+<h3>1. Definition of Internet</h3>
+<p>
+The Internet is a global network of interconnected computers,
+servers, mobile phones and other digital devices. These devices
+communicate with each other using standard communication protocols,
+mainly TCP/IP (Transmission Control Protocol / Internet Protocol).
+It allows users to exchange information, access websites, send emails,
+share files, watch videos and use various online services.
+</p>
+
+<p>
+In simple words, the Internet connects millions of networks around
+the world and allows people to communicate and share data from
+different geographical locations. It is a network of networks.
+</p>
+
+<div class="example-box">
+<b>Example:</b> When a student searches for study material on Google,
+the student's device communicates with Google's servers through
+the Internet and receives the required information.
+</div>
+
+<h3>2. History and Development of the Internet</h3>
+<p>
+The development of the Internet started in the late 1960s. It was
+initially developed to connect research institutions and allow
+computers to share information.
+</p>
+
+<ul>
+<li><b>1969 – ARPANET:</b> The Advanced Research Projects Agency
+Network was developed in the United States. It connected a small
+number of research institutions and is considered an important
+starting point in Internet history.</li>
+
+<li><b>1970s – Development of protocols:</b> Researchers worked
+on communication methods that could connect different computer
+networks.</li>
+
+<li><b>1983 – TCP/IP:</b> ARPANET adopted TCP/IP as its standard
+communication protocol. This became a major foundation of the
+modern Internet.</li>
+
+<li><b>1989 – World Wide Web proposal:</b> Tim Berners-Lee proposed
+the World Wide Web, which made accessing linked documents easier.</li>
+
+<li><b>1990s – Public growth:</b> The Internet became increasingly
+available to the public. Websites, browsers and email services
+became popular.</li>
+
+<li><b>Present day:</b> The Internet is widely used in education,
+business, banking, communication, entertainment and research.</li>
+</ul>
+
+<h3>3. How Does the Internet Work?</h3>
+<p>
+The Internet works through a combination of hardware, software,
+communication channels and protocols. When a user opens a website,
+the browser and web server exchange information through a series
+of steps.
+</p>
+
+<ol>
+<li><b>Entering a URL:</b> The user enters a website address,
+such as www.example.com, into a web browser.</li>
+
+<li><b>DNS lookup:</b> The Domain Name System converts the domain
+name into the corresponding IP address of the server.</li>
+
+<li><b>Sending a request:</b> The browser sends a request to the
+server using an appropriate communication protocol.</li>
+
+<li><b>Server processing:</b> The web server receives the request,
+processes it and finds the required webpage or resource.</li>
+
+<li><b>Sending response:</b> The server sends the requested data
+back to the user's device.</li>
+
+<li><b>Displaying webpage:</b> The browser interprets HTML, CSS
+and JavaScript and displays the webpage on the screen.</li>
+</ol>
+
+<h3>Working of the Internet – Flow Diagram</h3>
+
+<div class="flow">
+<span>User</span><b>→</b>
+<span>Browser</span><b>→</b>
+<span>DNS</span><b>→</b>
+<span>Web Server</span><b>→</b>
+<span>Webpage</span>
+</div>
+
+<p>
+This process takes place very quickly, usually within seconds.
+The actual communication may involve several routers and networks
+before the request reaches its destination.
+</p>
+
+<h3>4. Basic Components of the Internet</h3>
+
+<ul>
+<li><b>Client:</b> A client is a device or software application
+that requests information or services from a server. A laptop
+or mobile phone using a browser is an example of a client.</li>
+
+<li><b>Server:</b> A server is a computer or system that stores,
+processes and provides information or services to clients.
+Websites are hosted on web servers.</li>
+
+<li><b>Router:</b> A router is a networking device that forwards
+data packets between different networks and helps data reach
+its correct destination.</li>
+
+<li><b>ISP:</b> An Internet Service Provider is a company that
+provides Internet connectivity to users. Examples include
+Jio, Airtel and other broadband providers.</li>
+
+<li><b>IP Address:</b> An Internet Protocol address is a numerical
+address used to identify a device or network interface and
+help route data across networks.</li>
+
+<li><b>Protocols:</b> Protocols are communication rules that
+define how devices exchange information. Examples include
+TCP/IP, HTTP, HTTPS and FTP.</li>
+
+<li><b>Transmission Media:</b> Data travels through communication
+media such as optical fibre cables, copper cables and wireless
+signals.</li>
+</ul>
+
+<h3>5. Types of Internet Connections</h3>
+
+<ul>
+<li><b>Broadband:</b> Broadband provides high-speed Internet
+access through technologies such as fibre-optic cables and
+cable networks. It is commonly used in homes and offices.</li>
+
+<li><b>Wi-Fi:</b> Wi-Fi is a wireless networking technology
+that allows devices to connect to a local network and access
+the Internet without a physical cable connection.</li>
+
+<li><b>Mobile Data:</b> Mobile data provides Internet access
+through cellular networks such as 4G and 5G. It allows users
+to access the Internet using smartphones and other devices.</li>
+
+<li><b>Satellite Internet:</b> Satellite Internet uses
+communication satellites to provide Internet connectivity.
+It can be useful in remote areas where cable networks are
+not easily available.</li>
+</ul>
+
+<h3>6. Applications of the Internet</h3>
+
+<ul>
+<li><b>Communication:</b> Email, instant messaging, voice calls
+and video conferencing allow people to communicate globally.</li>
+
+<li><b>Education:</b> Students can attend online classes,
+download notes, watch educational videos and access digital
+libraries.</li>
+
+<li><b>Business and E-commerce:</b> Businesses use the Internet
+for online shopping, digital marketing, customer support
+and electronic transactions.</li>
+
+<li><b>Banking:</b> Online banking allows users to transfer
+money, check account balances and pay bills electronically.</li>
+
+<li><b>Entertainment:</b> Users can watch movies, listen to
+music, play online games and use social media platforms.</li>
+
+<li><b>Research:</b> Researchers can access online journals,
+digital libraries and scientific information from around
+the world.</li>
+</ul>
+
+<h3>7. Advantages of the Internet</h3>
+
+<ol>
+<li><b>Fast Communication:</b> It allows people to exchange
+messages and information within seconds.</li>
+
+<li><b>Easy Access to Information:</b> Users can find educational,
+technical and general information from different sources.</li>
+
+<li><b>Online Education:</b> Students can attend classes and
+learn new skills from anywhere.</li>
+
+<li><b>Business Growth:</b> Companies can reach customers
+worldwide through online platforms.</li>
+
+<li><b>Time Saving:</b> Online banking, shopping and booking
+services reduce the need for physical visits.</li>
+
+<li><b>Global Connectivity:</b> It connects people, organizations
+and institutions across different countries.</li>
+</ol>
+
+<h3>8. Disadvantages of the Internet</h3>
+
+<ol>
+<li><b>Cybercrime:</b> Users may face hacking, identity theft,
+phishing and online fraud.</li>
+
+<li><b>Privacy Issues:</b> Personal information may be collected,
+shared or misused without proper protection.</li>
+
+<li><b>Fake Information:</b> Incorrect news and misleading
+information can spread quickly online.</li>
+
+<li><b>Addiction:</b> Excessive Internet usage may affect
+concentration, productivity and daily routines.</li>
+
+<li><b>Security Threats:</b> Malware and viruses can damage
+devices or steal important information.</li>
+
+<li><b>Digital Divide:</b> Not everyone has equal access to
+reliable Internet connectivity and digital devices.</li>
+</ol>
+
+<h3>9. Real-Life Example</h3>
+
+<p>
+Suppose a student wants to search for notes on Web Technology.
+The student opens a browser and enters a search query. The browser
+sends the request through the Internet. The search engine server
+processes the request and sends the results back. The browser
+then displays the search results on the screen.
+</p>
+
+<p>
+Similarly, when a student attends an online class, the Internet
+transfers audio, video and other learning materials between
+the teacher's device and the student's device.
+</p>
+
+<h3>10. Conclusion</h3>
+
+<p>
+The Internet is one of the most important developments in modern
+technology. It connects computers and networks worldwide and
+makes communication and information sharing easier. It plays
+an important role in education, business, healthcare, banking,
+research and entertainment. However, users should follow
+appropriate security practices to use the Internet safely.
+</p>
+
+<h3>Important Exam Questions</h3>
+
+<ol>
+<li>Define the Internet and explain its history and development.</li>
+<li>Explain the working of the Internet with a suitable diagram.</li>
+<li>Describe the major components of the Internet.</li>
+<li>Explain different types of Internet connections.</li>
+<li>Discuss the advantages and disadvantages of the Internet.</li>
+<li>Explain the applications of the Internet in daily life.</li>
+</ol>
+
+<h3>Quick Revision</h3>
+<ul>
+<li>Internet = Network of interconnected networks.</li>
+<li>ARPANET began in 1969.</li>
+<li>TCP/IP became the standard for ARPANET in 1983.</li>
+<li>DNS converts domain names into IP addresses.</li>
+<li>ISP provides Internet connectivity.</li>
+<li>HTTP and HTTPS are used for web communication.</li>
+</ul>
+`
+
+};
+
+// ---------------- PAGE NAVIGATION ----------------
+
+function showPage(pageId) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
+
+  document.getElementById(pageId).classList.add("active");
+  window.scrollTo({top: 0, behavior: "smooth"});
+}
+
+function goHome() {
+  showPage("homePage");
+}
+
+function goChapters() {
+  showPage("chaptersPage");
+}
+
+let currentUnit = 0;
+
+// ---------------- RENDER UNIT CARDS ----------------
+
+function createUnitCards() {
+  return units.map((unit,index) => `
+    <div class="unit-card" onclick="openUnit(${index})">
+      <div class="unit-number">UNIT ${index+1}</div>
+      <h2>${unit.name}</h2>
+      <p>${unit.topics.length} Topics available</p>
+      <div class="arrow">Explore Unit →</div>
+    </div>
+  `).join("");
+}
+
+function renderUnits() {
+  document.getElementById("unitGrid").innerHTML =
+    createUnitCards();
+
+  document.getElementById("homeUnitGrid").innerHTML =
+    createUnitCards();
+}
+
+// ---------------- OPEN UNIT ----------------
+
+function openUnit(index) {
+  currentUnit = index;
+  const unit = units[index];
+
+  document.getElementById("unitHeading").textContent =
+    "Unit " + (index+1) + ": " + unit.name;
+
+  document.getElementById("unitBreadcrumb").textContent =
+    "Unit " + (index+1);
+
+  document.getElementById("topicList").innerHTML =
+    unit.topics.map((topic,i) => `
+      <div class="topic-item"
+        onclick="openTopic(${index},${i})">
+        <span>${i+1}. ${topic}</span>
+        <small>Read Notes →</small>
+      </div>
+    `).join("");
+
+  showPage("topicsPage");
+}
+
+// ---------------- OPEN TOPIC ----------------
+
+function openTopic(unitIndex, topicIndex) {
+  const topic = units[unitIndex].topics[topicIndex];
+
+  document.getElementById("topicBreadcrumb").textContent = topic;
+
+  const content = notes[topic] || `
+    <h2>${topic}</h2>
+
+    <h3>Introduction</h3>
+    <p>
+      ${topic} is an important concept in Web Technology.
+      It helps in understanding how websites, web applications
+      and Internet-based systems work.
+    </p>
+
+    <h3>Definition</h3>
+    <p>
+      This topic explains an important technology or concept
+      used in the development, communication or management
+      of modern web applications.
+    </p>
+
+    <h3>Important Concepts</h3>
+    <ul>
+      <li>Meaning and basic definition of the topic.</li>
+      <li>Its important features and characteristics.</li>
+      <li>Its working and related technologies.</li>
+      <li>Its practical applications in Web Technology.</li>
+    </ul>
+
+    <h3>Real-Life Example</h3>
+    <p>
+      Modern websites and web applications use this concept
+      to provide information and services to users.
+    </p>
+
+    <h3>Advantages and Limitations</h3>
+    <p>
+      This technology helps improve web development and
+      communication, although its limitations depend on
+      its implementation and use.
+    </p>
+
+    <h3>Important Exam Questions</h3>
+    <ol>
+      <li>Define ${topic}.</li>
+      <li>Explain its features and working.</li>
+      <li>Discuss its applications and advantages.</li>
+    </ol>
+
+    <p><b>Detailed exam-ready notes for this topic will be added
+    in the next content update.</b></p>
+  `;
+
+  document.getElementById("notesContent").innerHTML = content;
+  showPage("notesPage");
+}
+
+// ---------------- BACK TO UNIT ----------------
+
+function backToUnit() {
+  openUnit(currentUnit);
+}
+
+// ---------------- INITIALIZE ----------------
+
+renderUnits();
+
+</script>
+
+</body>
+</html>
